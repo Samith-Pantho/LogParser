@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+watchdog
+docker
+websockets
+python-dotenv
+httpx
+pydantic
+psycopg2-binary
+openai

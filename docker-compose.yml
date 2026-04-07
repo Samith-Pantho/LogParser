@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: logparser_user
+      POSTGRES_PASSWORD: logparser_pass
+      POSTGRES_DB: logparser_db
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "45678:45678"
+    environment:
+      - DATABASE_URL=postgresql://logparser_user:logparser_pass@db:5432/logparser_db
+      - AI_PROVIDER=openai
+      - AI_API_KEY=your_key
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - /var/run/docker.sock:/var/run/docker.sock # For docker log streaming
+      - ./Logs:/app/Logs
+    command: uvicorn main:app --host 0.0.0.0 --port 45678 --reload
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "3000:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Avoid overwriting container node_modules with host's (if any)
+
+volumes:
+  postgres_data:

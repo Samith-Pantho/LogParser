@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv/
+.pytest_cache/
+
+# Distribution / packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+.env
+
+# Docker
+**/Dockerfile
+docker-compose.override.yml
+**/docker-compose.override.yml
+*.log
+
+# Node
+node_modules/
+dist/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.vite/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# IDE files
+*.swp
+*.swo
+.idea/
+
+# Python bytecode
+*.pyc
+
+# Frontend build
+frontend/dist/
+
+# Backend migrations or DB
+*.sqlite3
+*.db
+
+# Generated files
+*.pid
+*.pid.lock
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
